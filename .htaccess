@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^darksky\.domoticz\.cn [NC]
+RewriteRule ^(.*) darksky.php [L]
+RewriteCond %{HTTP_HOST} ^install\.domoticz\.cn [NC]
+RewriteRule ^(.*) install.txt [L]
+RewriteCond %{HTTP_HOST} ^releases\.domoticz\.cn [NC]
+RewriteRule ^(.*)$ https://www.domoticz.cn/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^domoticz\.cn [NC]
+RewriteRule ^(.*) http://www.domoticz.cn/$1 [R=301,L]
+RewriteCond %{SERVER_PORT} !^443$
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+</IfModule>
